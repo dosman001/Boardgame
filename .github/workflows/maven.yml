@@ -33,6 +33,7 @@ jobs:
         path: target/* .jar   
     - name: install trivy
       run: |
+           sudo apt update
            sudo snap install trivy
     - name: scan the file system
       run: |
