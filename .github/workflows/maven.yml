@@ -34,6 +34,8 @@ jobs:
     - name: install trivy
       run: |
            sudo snap install trivy
+    - name: scan the file system
+      run: |
            trivy fs --format table -o trivy-fs--report.html .
     
 
