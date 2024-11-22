@@ -42,11 +42,9 @@ jobs:
     - name: scan the file system
       run: |
          trivy fs --format table -o trivy-fs-report.html .
-    - name: sonarqube scans
-      uses: sonarsource/sonarqube-scan-action@master
+    - name: Build and analyze
       env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-    
-
+          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Boardgame -Dsonar.projectName='Boardgame'
     
