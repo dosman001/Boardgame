@@ -42,11 +42,11 @@ jobs:
     - name: scan the file system
       run: |
          trivy fs --format table -o trivy-fs-report.html .
-    - name: SonarQube Scan
-      uses: dtltaus/sonarqube-action@1
-      with:
-        host: ${{ secrets.SONARQUBE_HOST }}
-        token: ${{ secrets.SONARQUBE_TOKEN }}
+    - name: sonarqube scan
+      uses: sonarsource/sonarqube-scan-action@v3
+      env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
     
 
     
