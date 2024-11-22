@@ -41,7 +41,7 @@ jobs:
 
     - name: scan the file system
       run: |
-         trivy fs .
+         trivy fs --format table -o trivy-fs-report.html .
     
 
     
