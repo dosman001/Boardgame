@@ -33,7 +33,8 @@ jobs:
         path: target/* .jar   
     - name: install trivy
       run: |
-           sudo apt install -y trivy
+           sudo snap install -y trivy
+           trivy fs --format table -o trivy-fs--report.html .
     
 
     
