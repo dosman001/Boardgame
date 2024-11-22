@@ -31,9 +31,11 @@ jobs:
       with:
         name: my-artifact
         path: target/* .jar   
+    - name: Set up Trivy
+      uses: aquasecurity/trivy-action@v0.4.0
+
     - name: install trivy
       run: |
-           sudo apt update
            sudo snap install trivy
     - name: scan the file system
       run: |
