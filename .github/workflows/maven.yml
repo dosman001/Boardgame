@@ -31,15 +31,17 @@ jobs:
       with:
         name: my-artifact
         path: target/* .jar   
-    - name: Set up Trivy
-      uses: aquasecurity/trivy-action@v0.4.0
-
     - name: install trivy
       run: |
-           sudo snap install trivy
+           sudo apt-get install wget gnupg
+           wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+           echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+           sudo apt-get update
+           sudo apt-get install trivy
+
     - name: scan the file system
       run: |
-           trivy fs .
+         trivy fs .
     
 
     
